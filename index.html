@@ -46,7 +46,7 @@
       padding: 8px 2px;
       width: 122px;
     }
-  </style>
+  </style>                      
 </head>
 
 <body>
@@ -86,7 +86,15 @@
       <button>Trigger a Global Error</button>
     </section>
   </main>
-
+  <!-- ERROR Tracker Embedded Script -->
+  <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+  <script>
+    window.TrackJS && TrackJS.install({ 
+      token: "c1a17035edf84b16b5abc872b19f80fd"
+      // for more configuration options, see https://docs.trackjs.com
+    });
+    TrackJS.track('Testing TrackJS!');                    
+  </script> 
   <script>
     let form = document.querySelector('form');
     form.addEventListener('submit', e => {
@@ -102,6 +110,25 @@
 
     // Start your code here
     // You may move this JS to another file if you wish
+
+    // Error event listener 
+    window.addEventListener('error', function(e) {
+      console.log("ERROR");
+    });
+    // DOM event listener 
+    window.addEventListener('DOMContentLoaded', init);
+
+    // Testing Try, Catch, and Finally
+    try {
+      input1 = document.querySelector(first-num);
+    } 
+    catch (err) {
+      console.log("[ERROR] The error was: " + err);
+    } 
+    finally {
+      console.log("Oh noes, there was a an error there Chief.")
+    }
+
   </script>
 </body>
 
