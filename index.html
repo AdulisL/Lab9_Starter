@@ -86,15 +86,7 @@
       <button>Trigger a Global Error</button>
     </section>
   </main>
-  <!-- ERROR Tracker Embedded Script -->
-  <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
-  <script>
-    window.TrackJS && TrackJS.install({ 
-      token: "c1a17035edf84b16b5abc872b19f80fd"
-      // for more configuration options, see https://docs.trackjs.com
-    });
-    TrackJS.track('Testing TrackJS!');                    
-  </script> 
+  
   <script>
     let form = document.querySelector('form');
     form.addEventListener('submit', e => {
@@ -111,25 +103,121 @@
     // Start your code here
     // You may move this JS to another file if you wish
 
-    // Error event listener 
-    window.addEventListener('error', function(e) {
-      console.log("ERROR");
+    // Console Log Button
+    errorBtns[0].addEventListener('click', (e) => {
+      console.log('Console Log clicked');
     });
-    // DOM event listener 
-    window.addEventListener('DOMContentLoaded', init);
 
-    // Testing Try, Catch, and Finally
-    try {
-      input1 = document.querySelector(first-num);
-    } 
-    catch (err) {
-      console.log("[ERROR] The error was: " + err);
-    } 
-    finally {
-      console.log("Oh noes, there was a an error there Chief.")
+     // Console Error Button
+     errorBtns[1].addEventListener('click', (e) => {
+      console.log('Console Error clicked');
+      console.error();
+    });
+
+    // Console Count Button
+    errorBtns[2].addEventListener('click', (e) => {
+      console.log('Console Count clicked: ' + console.count()); 
+    });
+
+    // Console Warn Button
+    errorBtns[3].addEventListener('click', (e) => {
+      console.log('Console Warn clicked');
+      console.warn(); 
+    });
+
+    // Console Assert Button
+    errorBtns[4].addEventListener('click', (e) => {
+      console.log('Console Assert clicked');
+      console.assert(1 == 10);
+    });
+
+    // Console Clear Button
+    errorBtns[5].addEventListener('click', (e) => {
+      console.log('Console Clear clicked');
+      console.clear();
+    });
+
+    // Console Dir Button
+    errorBtns[6].addEventListener('click', (e) => {
+      console.log('Console Dir clicked');
+      console.dir(document.head)
+    });
+
+    // Console Dirxml Button
+    errorBtns[7].addEventListener('click', (e) => {
+      console.log('Console Dirxml clicked');
+      console.dirxml(document);
+    });
+
+    // Console Group Start Button
+    errorBtns[8].addEventListener('click', (e) => {
+      console.log('Console Group Start clicked');
+      console.group();
+    });
+
+    // Console Group End Button
+    errorBtns[9].addEventListener('click', (e) => {
+      console.log('Console Group End clicked');
+      console.groupEnd();
+    });
+
+    // Console Table Button
+    errorBtns[10].addEventListener('click', (e) => {
+      console.table(["Console", "Table", "clicked"]);
+    });
+
+    // Start Timer Button
+    errorBtns[11].addEventListener('click', (e) => {
+      console.log('Start Timer clicked');
+      console.time();
+    });
+
+    // End Timer Button
+    errorBtns[12].addEventListener('click', (e) => {
+      console.log('End Timer clicked');
+      console.timeEnd();
+    });
+
+    // Console Trace Button
+    errorBtns[13].addEventListener('click', () => {
+      console.log('Console Trace clicked');
+      console.trace();
+    });
+
+    // Custom message for Error
+    class triggerGlobalError extends Error{
+      constructor(message){
+        super(message);
+        this.name = "Trigger a Global Error";
+      }
     }
+    // Trigger a Global Error Button
+    errorBtns[14].addEventListener('click', (e) => {
+      try{
+        document.querySelector('#operator').click();
+      }
+      catch(error){
+        throw(new triggerGlobalError('Global Error Triggered'));
+      }
+      finally{
+        console.log('Finally Done');
+      }
+    });
 
+    window.addEventListener('error', (message) => {
+      console.log(message);
+    })
   </script>
+
+  <!-- ERROR Tracker Embedded Script -->
+  <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+  <script>
+    window.TrackJS && TrackJS.install({ 
+      token: "c1a17035edf84b16b5abc872b19f80fd"
+      // for more configuration options, see https://docs.trackjs.com
+    });
+    TrackJS.track('Testing TrackJS!');                    
+  </script> 
 </body>
 
 </html>
